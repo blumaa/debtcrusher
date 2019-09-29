@@ -1,0 +1,29 @@
+<h1>The project title: <%= @project.name %></h1>
+<h1>The goal for this project: <%= @project.goal_or_goal_met %></h1>
+<p>Toal amount pledge: <%= @project.total_pledge_amount %></p>
+
+<h3>The pledges:</h3>
+<ul>
+  <% @project.pledges.each do |pledge| %>
+    <li><%= pledge.amount %> unit pledged by <%= link_to pledge.user.name, user_path(pledge.user) %></li>
+  <% end %>
+</ul>
+
+
+<%= form_for @project.pledges.build do |f| %>
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+  <%= f.label :user %>
+  <%= f.collection_select :user_id, User.all, :id, :name, prompt: true %>
+  <%= f.hidden_field :project_id %>
+  <%= f.submit %>
+
+<% end %>
+
+<p><%= button_to "edit project", edit_project_path(@project), method:"get" %>
+
+<%= button_to 'index page', projects_path, method:"get" %>
+
+<%= button_to "Delete User", @project, method: :delete, data: { confirm: "Really?" } %>
+
+</p>

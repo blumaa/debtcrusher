@@ -1,0 +1,13 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @project do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :goal %>
+  <%= f.text_field :goal %>
+  <%= f.submit %>
+<% end %>

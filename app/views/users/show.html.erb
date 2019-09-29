@@ -1,0 +1,9 @@
+<h1>The page for: <%= @user.name %></h1>
+
+<p><%= button_to "edit user", edit_user_path(@user), method:"get" %>
+
+<%= button_to 'index page', users_path, method:"get" %>
+
+<%= button_to "Delete User", @user, method: :delete, data: { confirm: "Really?" } %>
+
+</p>
